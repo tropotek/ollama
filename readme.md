@@ -8,7 +8,7 @@ In phpStorm, setup docker and execute the docker-compose.yml.
 
 Within a terminal run the following:
 ```bash
-cd ollama1
+cd ollama
 docker-compose up -d
 ```
 
