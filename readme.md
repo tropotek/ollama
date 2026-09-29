@@ -69,9 +69,9 @@ As a bonus you can access the searxng page at `http://localhost:18081/`
 
 Go to admin settings `Web Search` an select `searxng` and set the url to `http://searxng:8081/search?q=<query>`
 
-#### Enable kokoro-tts 
+#### Enable kokoro-tts
 
-See: https://www.youtube.com/watch?v=92bjD0kA4GM&t=111s
+Kokoro TTS runs from the sibling `../kokoro` project; see its README for Open WebUI setup.
 
 ## More Info
 
@@ -80,7 +80,6 @@ Watch this vid to learn about ollama: https://youtu.be/Wjrdr0NU4Sk?si=0g5PgAFnDb
 #### Additional Features:
 - **Open-WebUI Interface:** Access at `http://localhost:3000/`.
 - **Searxng Page:** Available at `http://localhost:18081/`.
-- **Kokoro TTS:** Available at `http://localhost:8880/web/`.
 
 
 ## Notes:
