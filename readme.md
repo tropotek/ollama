@@ -8,13 +8,13 @@ In phpStorm, setup docker and execute the docker-compose.yml.
 
 Within a terminal run the following:
 ```bash
-cd ollama-test
+cd ollama1
 docker-compose up -d
 ```
 
 The bash commands below assume you are in the docker terminal:
 ```bash
-docker exec -it ollama-test bash
+docker exec -it ollama bash
 ```
 
 Download LLM images from the [ollama hub](https://ollama.ai/library).
@@ -53,7 +53,7 @@ If you access Open WebUI through multiple hostnames (for example `http://192.168
 
 To keep behavior/settings consistent, use one canonical URL for Open WebUI:
 
-1. Set `WEBUI_URL` in `.env` to your public URL (example: `WEBUI_URL=https://ollama.tk`).
+1. Uncomment `WEBUI_URL` in `docker-compose.yml` and set it in `.env` to your public URL (example: `WEBUI_URL=https://ollama.tk`).
 2. Keep all alternate URLs/IPs redirected by your reverse proxy to that same canonical host.
 3. Recreate the service:
 
@@ -61,7 +61,7 @@ To keep behavior/settings consistent, use one canonical URL for Open WebUI:
 docker compose up -d --force-recreate open-webui
 ```
 
-Open WebUI data is persisted in `./open-webui` (mounted to `/app/backend/data`) so server-side settings/accounts survive container recreation.
+Open WebUI data is persisted in `./docker/open-webui` (mounted to `/app/backend/data`) so server-side settings/accounts survive container recreation.
 
 As a bonus you can access the searxng page at `http://localhost:18081/`
 
@@ -80,7 +80,7 @@ Watch this vid to learn about ollama: https://youtu.be/Wjrdr0NU4Sk?si=0g5PgAFnDb
 #### Additional Features:
 - **Open-WebUI Interface:** Access at `http://localhost:3000/`.
 - **Searxng Page:** Available at `http://localhost:18081/`.
-- **Kokoro TTS:** Available at `http://localhost:11435/web/`.
+- **Kokoro TTS:** Available at `http://localhost:8880/web/`.
 
 
 ## Notes:
@@ -89,7 +89,6 @@ Best test LLM's using Nvidia 20xx series with 8g :
 - `networkjohnny/deepseek-coder-v2-lite-base-q4_k_m-gguf:latest` (not good with opencode) 
 - `qwen2.5-coder:7b`
 - `deepseek-r1:7b`
-- https://huggingface.co/unsloth/Qwen3.5-9B-MTP-GGUF
 
 Use the Default Quantization: By default, Ollama downloads the Q4_K_M 4-bit quantization, which compresses the model perfectly so it fits into your 8GB VRAM.
 

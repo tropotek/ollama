@@ -52,7 +52,6 @@ services:
       - SEARXNG_BASE_URL=http://searxng:8081/
       - OLLAMA_BASE_URL=http://ollama:11434
 #      - WEBUI_URL=${WEBUI_URL:-http://localhost:3000}
-#      - OPENCODE_SERVER_URL=http://localhost:1234
     restart: unless-stopped
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8080/healthz" ]
