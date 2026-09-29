@@ -22,6 +22,15 @@
         "baseURL": "http://localhost:11435/v1"
       },
       "models": {
+        "Ornith-1.5-9B-Q4_K_M.gguf": {
+          "name": "Ornith 1.5 9B",
+          "tool_call": true,
+          "reasoning": true,
+          "limit": {
+            "context": 65536,
+            "output": 4096
+          }
+        },
         "ornith-1.0-9b-Q4_K_M.gguf": {
           "name": "Ornith 1.0 9B",
           "tool_call": true,

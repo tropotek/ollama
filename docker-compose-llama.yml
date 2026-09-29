@@ -21,25 +21,26 @@ services:
     # back as structured tool_calls instead of raw text - required for opencode.
     # --alias sets the id reported by /v1/models, matching the model key clients send.
 
+    # --- Qwen3-Coder-30B-A3B-Instruct-UD-Q3_K_XL config - commented out for now ---
     # https://huggingface.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF
     # Qwen3-Coder-30B-A3B UD-Q3_K_XL: 13.8Gb, 48 layers, 128 experts, 8 active per
     # token. --n-cpu-moe 32 holds 32 layers' routed experts in system RAM and the
     # rest plus attention/KV on the GPU (~7.4Gb of 8Gb); raise it to free VRAM,
     # lower it for speed while watching `nvidia-smi`. ~10 tok/s, RAM bandwidth bound.
-    command: >
-      --model /models/Qwen3-Coder-30B-A3B-Instruct-UD-Q3_K_XL.gguf
-      --alias Qwen3-Coder-30B-A3B-Instruct-UD-Q3_K_XL.gguf
-      --host 0.0.0.0
-      --port 8080
-      --n-gpu-layers 99
-      --n-cpu-moe 32
-      --ctx-size 32768
-      --cache-type-k q8_0
-      --cache-type-v q8_0
-      -fa on
-      -np 1
-      --threads 8
-      --jinja
+    # command: >
+    #   --model /models/Qwen3-Coder-30B-A3B-Instruct-UD-Q3_K_XL.gguf
+    #   --alias Qwen3-Coder-30B-A3B-Instruct-UD-Q3_K_XL.gguf
+    #   --host 0.0.0.0
+    #   --port 8080
+    #   --n-gpu-layers 99
+    #   --n-cpu-moe 32
+    #   --ctx-size 32768
+    #   --cache-type-k q8_0
+    #   --cache-type-v q8_0
+    #   -fa on
+    #   -np 1
+    #   --threads 8
+    #   --jinja
 
     # --- Qwen3-4B-Instruct-2507-Q8_0 config - commented out for now ---
     # https://huggingface.co/unsloth/Qwen3-4B-Instruct-2507-GGUF
@@ -93,6 +94,21 @@ services:
     #   -fa on
     #   -np 1
     #   --jinja
+
+    # Ornith-1.5-9B Q4_K_M: 5.78Gb, same hybrid attention/SSM layout as 1.0 so the
+    # 1.0 tuning carries over - full GPU offload, 64k ctx, q8_0 KV cache.
+    command: >
+      --model /models/Ornith-1.5-9B-Q4_K_M.gguf
+      --alias Ornith-1.5-9B-Q4_K_M.gguf
+      --host 0.0.0.0
+      --port 8080
+      --n-gpu-layers 99
+      --ctx-size 65536
+      --cache-type-k q8_0
+      --cache-type-v q8_0
+      -fa on
+      -np 1
+      --jinja
 
     # --- Qwen3.6-27B-Q4_K_M config - commented out for now ---
     # Same Qwen3.5-style hybrid attention/SSM architecture as ornith, but bigger -
